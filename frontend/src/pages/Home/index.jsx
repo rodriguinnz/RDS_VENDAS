@@ -4,7 +4,7 @@ export default function Page() {
     return(
         <div>
             <h2>Página Home</h2>
-            <Link to='/About'>Sobre</Link>
+            <Link to='/about'>Sobre</Link>
         </div>
     )
 }
