@@ -11,6 +11,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Função que verifica se o usuário está logado e atualiza o estado
     const checkLogin = () => {
       const loggedIn = isLogged();
       setLogged(loggedIn);
@@ -20,18 +21,22 @@ export default function Header() {
       } else {
         setUser(null);
       }
-
-      checkLogin();
-
-      const handleStorageChange = (e) => {
-        if (e.key === "token" || e.key === "user") {
-          checkLogin();
-        }
-      };
     };
 
+    // Chama uma vez ao montar o componente
+    checkLogin();
+
+    // Função que reage a mudanças no localStorage (ex: login/logout)
+    const handleStorageChange = (e) => {
+      if (e.key === "token" || e.key === "user") {
+        checkLogin();
+      }
+    };
+
+    // Escuta mudanças no armazenamento local
     window.addEventListener("storage", handleStorageChange);
 
+    // Remove o listener ao desmontar
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
@@ -46,7 +51,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      {/*logo*/}
+      {/* Logo */}
       <div className="logo">
         <Link to="/">
           <span className="logo-1">R</span>
@@ -55,7 +60,7 @@ export default function Header() {
         </Link>
       </div>
 
-      {/*Busca*/}
+      {/* Barra de busca */}
       <div className="search-bar">
         <input type="text" placeholder='Buscar "Apartamento"' />
         <div className="location">
@@ -65,7 +70,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/*Botões*/}
+      {/* Navegação */}
       <nav className="navbar">
         <ul>
           {logged ? (
@@ -79,19 +84,21 @@ export default function Header() {
                   Postar um anúncio
                 </Link>
               </li>
+
               <li className="profileContainer">
                 <button
                   className="profileBtn"
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <img
-                    src={user.photoURL}
-                    alt={user.name}
+                    src={user?.photoURL}
+                    alt={user?.name}
                     className="profileImg"
                   />
-                  <span>{user.name?.split(" ")[0]}</span>
+                  <span>{user?.name?.split(" ")[0]}</span>
                   <FaAngleDown size={16} className="arrow" />
                 </button>
+
                 {menuOpen && (
                   <div className="dropdown">
                     <button>Minha Conta</button>
@@ -104,7 +111,7 @@ export default function Header() {
           ) : (
             <>
               <li>
-                <Link to="/singin" className="entrarBtn">
+                <Link to="/signin" className="entrarBtn">
                   Entrar
                 </Link>
               </li>

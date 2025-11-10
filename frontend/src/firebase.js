@@ -2,15 +2,17 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBsdN8hu1Z61InE0u7DSW2iCqlWGP5qam8",
-  authDomain: "ktzx-vendas.firebaseapp.com",
-  projectId: "ktzx-vendas",
-  storageBucket: "ktzx-vendas.firebasestorage.app",
-  messagingSenderId: "212089145211",
-  appId: "1:212089145211:web:4a44813b67cdbdd4abdfde",
-  measurementId: "G-4HRG7DTQ6B"
+  apiKey: "AIzaSyCFb7yB4t3LWm00aZD8LZJpUlV-ypQDiN8",
+  authDomain: "rds-vendas1.firebaseapp.com",
+  projectId: "rds-vendas1",
+  storageBucket: "rds-vendas1.firebasestorage.app",
+  messagingSenderId: "1088074452067",
+  appId: "1:1088074452067:web:6599776cad285e6ba8bc56",
+  measurementId: "G-GSP55WCEET"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
