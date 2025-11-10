@@ -11,7 +11,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Função que verifica se o usuário está logado e atualiza o estado
+    // ✅ função principal de verificação
     const checkLogin = () => {
       const loggedIn = isLogged();
       setLogged(loggedIn);
@@ -23,20 +23,17 @@ export default function Header() {
       }
     };
 
-    // Chama uma vez ao montar o componente
     checkLogin();
 
-    // Função que reage a mudanças no localStorage (ex: login/logout)
+    // ✅ agora a função existe FORA da anterior
     const handleStorageChange = (e) => {
       if (e.key === "token" || e.key === "user") {
         checkLogin();
       }
     };
 
-    // Escuta mudanças no armazenamento local
     window.addEventListener("storage", handleStorageChange);
 
-    // Remove o listener ao desmontar
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
@@ -51,7 +48,6 @@ export default function Header() {
 
   return (
     <header className="header">
-      {/* Logo */}
       <div className="logo">
         <Link to="/">
           <span className="logo-1">R</span>
@@ -60,7 +56,6 @@ export default function Header() {
         </Link>
       </div>
 
-      {/* Barra de busca */}
       <div className="search-bar">
         <input type="text" placeholder='Buscar "Apartamento"' />
         <div className="location">
@@ -70,7 +65,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Navegação */}
       <nav className="navbar">
         <ul>
           {logged ? (

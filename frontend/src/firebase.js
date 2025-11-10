@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-
+// ❌ Removido o import de analytics (não necessário)
+// import { getAnalytics } from "firebase/analytics";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCFb7yB4t3LWm00aZD8LZJpUlV-ypQDiN8",
@@ -10,31 +10,33 @@ const firebaseConfig = {
   storageBucket: "rds-vendas1.firebasestorage.app",
   messagingSenderId: "1088074452067",
   appId: "1:1088074452067:web:6599776cad285e6ba8bc56",
-  measurementId: "G-GSP55WCEET"
+  measurementId: "G-GSP55WCEET", // pode deixar, mesmo que não use
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// ❌ removido o analytics
+// const analytics = getAnalytics(app);
+
 const auth = getAuth(app);
 
-//provedor google
+// Provedor Google
 const googleProvider = new GoogleAuthProvider();
 
-//funcao login popup
+// Função login popup
 async function signInWithGooglePopup() {
-    try {
-        const result = await signInWithPopup(auth, googleProvider);
-        return result.user;
-    } catch (error) {
-        throw error;
-    }
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    return result.user;
+  } catch (error) {
+    throw error;
+  }
 }
 
-//funcao para logount
+// Função logout
 async function logout() {
-    await signOut(auth);
+  await signOut(auth);
 }
 
-export { auth, googleProvider, signInWithGooglePopup, logout};
+export { auth, googleProvider, signInWithGooglePopup, logout };
