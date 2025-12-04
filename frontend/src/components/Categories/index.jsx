@@ -15,18 +15,20 @@ const categories = [
 { name: 'Habitacao', img: Habitacao},
 ];
 
-export default function Categories ({ selectedBtn, onSelect}) {
-return (
-  <>
-	{categories.map((cat) => (
-	  <button
-		key={cat.name}
-		onClick={() => onSelect(cat.name)}
-		className={`btn ${selectedBtn === cat.name ? 'selected' : ''}`}
-	  >
-		{cat.name}
-	  </button>
-	))}
-  </>
-);
+export default function Categories({ selectedBtn, onSelect }) {
+	return (
+	  <div className="categories">
+		{categories.map((cat) => (
+		  <button
+			key={cat.name}
+			onClick={() => onSelect(cat.name)}
+			className={`btn ${selectedBtn === cat.name ? 'selectedBtn' : ''}`}
+		  >
+			<img src={cat.img} alt={cat.name} />
+			<span>{cat.name}</span>
+		  </button>
+		))}
+	  </div>
+	);
 }
+	  

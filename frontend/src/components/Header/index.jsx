@@ -1,3 +1,4 @@
+import React from "react"; // ✅ Adicione isto
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,7 +12,6 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // ✅ função principal de verificação
     const checkLogin = () => {
       const loggedIn = isLogged();
       setLogged(loggedIn);
@@ -25,7 +25,6 @@ export default function Header() {
 
     checkLogin();
 
-    // ✅ agora a função existe FORA da anterior
     const handleStorageChange = (e) => {
       if (e.key === "token" || e.key === "user") {
         checkLogin();
@@ -33,10 +32,7 @@ export default function Header() {
     };
 
     window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, [setLogged, setUser]);
 
   const handleLogout = () => {
@@ -70,13 +66,8 @@ export default function Header() {
           {logged ? (
             <>
               <li>
-                <Link to="/" className="anuncio">
-                  Meus Anúncios
-                </Link>
-
-                <Link to="/post-an-ad" className="anunciarBtn">
-                  Postar um anúncio
-                </Link>
+                <Link to="/" className="anuncio">Meus Anúncios</Link>
+                <Link to="/post-an-ad" className="anunciarBtn">Postar um anúncio</Link>
               </li>
 
               <li className="profileContainer">
@@ -105,14 +96,10 @@ export default function Header() {
           ) : (
             <>
               <li>
-                <Link to="/signin" className="entrarBtn">
-                  Entrar
-                </Link>
+                <Link to="/signin" className="entrarBtn">Entrar</Link>
               </li>
               <li>
-                <Link to="/" className="anunciarBtn">
-                  Anunciar grátis
-                </Link>
+                <Link to="/" className="anunciarBtn">Anunciar grátis</Link>
               </li>
             </>
           )}

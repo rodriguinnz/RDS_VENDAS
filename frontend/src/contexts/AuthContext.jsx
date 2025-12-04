@@ -1,20 +1,25 @@
-import { createContext, useContext, useState } from "react";
-import { isLogged, getUser } from "../lib/AuthHandler";
+import React, { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const initialLoggedState = isLogged();
-    const initalUserState = initialLoggedState ? getUser() : null;
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [logged, setLogged] = useState(false);
 
-    const [logged, setLogged] = useState(initialLoggedState);
-    const [user, setUser] = useState(initalUserState);
+  const value = {
+    user,
+    setUser,
+    logged,
+    setLogged,
+  };
 
-    return (
-        <AuthContext.Provider value={{ logged, setLogged, user, setUser }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  return useContext(AuthContext);
+}

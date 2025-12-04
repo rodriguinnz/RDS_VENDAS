@@ -1,45 +1,92 @@
+/* ===============================
+   CATEGORIAS HORIZONTAIS - estilo OLX
+================================= */
+
 .categories {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    margin: 30px;
-  }
-  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; /* se faltar espaço, quebra pra baixo */
+  width: 100%;
+  padding: 15px 0;
+  margin-top: -7rem;
+}
+
+/* Cada botão de categoria */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 180px;
+  height: 55px;
+  border: none;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+/* Ícone */
+.btn img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Hover */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ff7b00;
+}
+
+/* Botão selecionado */
+.selectedBtn {
+  background-color: #fff8f0;
+  border: 2px solid #ff7b00;
+  color: #ff7b00;
+  font-weight: 600;
+}
+
+/* ===============================
+   Responsivo
+================================= */
+
+@media (max-width: 1024px) {
   .btn {
     width: 150px;
-    height: 40px;
-    padding: 10px;
-    margin: 5px 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: unset;
-    border-radius: 3px;
-    flex-grow: 1;
-    color: #333;
-    background-color: #f3f3f3;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
+    height: 50px;
+    font-size: 0.9rem;
   }
-  
+
   .btn img {
-    width: 25px;
-    height: auto;
-    margin-right: 5px;
+    width: 24px;
+    height: 24px;
   }
-  
-  .btn span {
-    font-weight: bold;
-    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .categories {
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
   }
-  
-  /* Efeito ao passar o mouse */
-  .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  .btn {
+    width: 140px;
+    height: 45px;
+    font-size: 0.85rem;
   }
-  
-  .selectedBtn {
-    background-color: #6e0ad6;
-    color: #fff;
+
+  .btn img {
+    width: 22px;
+    height: 22px;
   }
+}
